@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Giriş Yap</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>🔐 Giriş Yap</h2>
+
+    <input type="text" id="username" placeholder="Kullanıcı Adı" />
+    <input type="password" id="password" placeholder="Şifre" />
+    <button onclick="login()">Giriş Yap</button>
+
+    <p style="margin-top:1rem;">
+      Hesabın yok mu? <a href="register.html">Kayıt Ol</a>
+    </p>
+  </div>
+
+  <script type="module">
+    import { login } from './js/auth.js';
+    window.login = login;
+  </script>
+</body>
+</html>

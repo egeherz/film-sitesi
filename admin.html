@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Paneli</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>🛠 Admin Paneli</h1>
+    <nav>
+      <a href="index.html">Anasayfa</a> |
+      <a href="#" onclick="logout()">Çıkış Yap</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>🎬 Film Ekle</h2>
+    <form id="filmForm">
+      <input type="text" id="title" placeholder="Film Adı" required />
+      <input type="url" id="image" placeholder="Görsel URL" required />
+      <textarea id="description" placeholder="Açıklama" rows="4" required></textarea>
+      <button type="submit">Ekle</button>
+    </form>
+  </div>
+
+  <script type="module">
+    import { getCurrentUser, requireLogin, isAdmin } from './js/utils.js';
+    import { logout } from './js/auth.js';
+    import { getFilms, saveFilms } from './js/utils.js';
+
+    // Admin kontrolü
+    requireLogin();
+    if(!isAdmin()){
+      alert("Admin girişi gerekli!");
+      window.location.href = 'index.html';
+    }
+
+    const filmForm = document.getElementById('filmForm');
+    filmForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const title = document.getElementById('title').value.trim();
+      const image = document.getElementById('image').value.trim();
+      const description = document.getElementById('description').value.trim();
+
+      if(title && image && description){
+        const films = getFilms();
+        films.push({ title, image, description });
+        saveFilms(films);
+        alert("Film başarıyla eklendi!");
+        filmForm.reset();
+      } else {
+        alert("Lütfen tüm alanları doldurunuz!");
+      }
+    });
+
+    window.logout = logout;
+  </script>
+</body>
+</html>

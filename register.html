@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kayıt Ol</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>📝 Kayıt Ol</h2>
+
+    <input type="text" id="username" placeholder="Kullanıcı Adı" />
+    <input type="password" id="password" placeholder="Şifre" />
+    <button onclick="register()">Kayıt Ol</button>
+
+    <p style="margin-top:1rem;">
+      Zaten hesabın var mı? <a href="login.html">Giriş Yap</a>
+    </p>
+  </div>
+
+  <script type="module">
+    import { register } from './js/auth.js';
+    window.register = register;
+  </script>
+</body>
+</html>
